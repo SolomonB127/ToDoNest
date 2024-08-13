@@ -13,8 +13,12 @@ class HomePage extends StatelessWidget {
         elevation: 0,
       ),
       body: ListView(
-        children: const [
-          TodoTile(),
+        children: [
+          TodoTile(
+            taskName: 'Make First App',
+            isTaskCompleted: true,
+            onChanged: (p0) {},
+          ),
         ],
       ),
     );
