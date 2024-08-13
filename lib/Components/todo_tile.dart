@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class TodoTile extends StatelessWidget {
-  const TodoTile({super.key});
+  // Tile Variables
+  final String taskName;
+  final bool isTaskCompleted;
+  void Function(bool?)? onChanged;
+
+  TodoTile(
+      {super.key,
+      required this.taskName,
+      required this.isTaskCompleted,
+      required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -11,15 +20,14 @@ class TodoTile extends StatelessWidget {
         padding: const EdgeInsets.all(24.0),
         decoration: BoxDecoration(
             color: Colors.blueAccent, borderRadius: BorderRadius.circular(12)),
-        child: const Row(
+        child: Row(
           children: [
-
             // Checkbox
-            Checkbox(value: , onChanged: ),
+            Checkbox(value: isTaskCompleted, onChanged: onChanged),
 
             // Task
             Text(
-              "Make First App",
+              taskName,
             ),
           ],
         ),
