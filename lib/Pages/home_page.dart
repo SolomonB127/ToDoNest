@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:todo_nest/Components/dialog_box.dart';
 import 'package:todo_nest/Components/todo_tile.dart';
+import 'package:todo_nest/data/database.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,28 +12,42 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // Reference the Hive Box
+  final _storageBox = Hive.box('storage');
+  // instance of Database Class
+  ToDoDB db = ToDoDB();
+
+  @override
+  void initState() {
+    // If this is first time running app, create default data
+    if (_storageBox.get("TODOLIST") == null) {
+      db.createInitialData();
+    } else {
+      // data already exists
+      db.loadData();
+    }
+    super.initState();
+  }
+
   // Text Controller
   final _controller = TextEditingController();
-  //list task
-  List toDoTask = [
-    ["Make First App", false],
-    ["Eat", false],
-  ];
 
   // On changes method
   void checkedBox(bool? value, int index) {
     setState(() {
-      toDoTask[index][1] = !toDoTask[index][1];
+      db.toDoTask[index][1] = !db.toDoTask[index][1];
     });
+    db.updateData();
   }
 
   // Save New Task Method
   void saveNewTask() {
     setState(() {
-      toDoTask.add([_controller.text, false]);
+      db.toDoTask.add([_controller.text, false]);
       _controller.clear();
     });
     Navigator.of(context).pop();
+    db.updateData();
   }
 
   // Create New Task Method
@@ -50,8 +66,9 @@ class _HomePageState extends State<HomePage> {
   // Delete Task method
   void deleteMyTask(int index) {
     setState(() {
-      toDoTask.removeAt(index);
+      db.toDoTask.removeAt(index);
     });
+    db.updateData();
   }
 
   @override
@@ -68,11 +85,11 @@ class _HomePageState extends State<HomePage> {
           onPressed: createNewTask, child: const Icon(Icons.add)),
 
       body: ListView.builder(
-        itemCount: toDoTask.length,
+        itemCount: db.toDoTask.length,
         itemBuilder: (context, index) {
           return TodoTile(
-            taskName: toDoTask[index][0],
-            isTaskCompleted: toDoTask[index][1],
+            taskName: db.toDoTask[index][0],
+            isTaskCompleted: db.toDoTask[index][1],
             onChanged: (value) => checkedBox(value, index),
             deleteTask: (context) => {deleteMyTask(index)},
           );
