@@ -30,6 +30,10 @@ class _HomePageState extends State<HomePage> {
         title: const Center(child: Text("To Do")),
         elevation: 0,
       ),
+
+      // Floating Button to add tasks
+      floatingActionButton:
+          FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
       body: ListView.builder(
         itemCount: toDoTask.length,
         itemBuilder: (context, index) {
