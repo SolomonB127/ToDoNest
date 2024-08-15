@@ -10,6 +10,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // Text Controller
+  final _controller = TextEditingController();
   //list task
   List toDoTask = [
     ["Make First App", false],
@@ -23,12 +25,25 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  // Save New Task Method
+  void saveNewTask() {
+    setState(() {
+      toDoTask.add([_controller.text, false]);
+      _controller.clear();
+    });
+    Navigator.of(context).pop();
+  }
+
   // Create New Task Method
   void createNewTask() {
     showDialog(
         context: context,
         builder: (context) {
-          return const DialogBox();
+          return DialogBox(
+            myController: _controller,
+            onSave: saveNewTask,
+            onCancel: () => Navigator.of(context).pop(),
+          );
         });
   }
 
@@ -44,7 +59,7 @@ class _HomePageState extends State<HomePage> {
       // Floating Button to add tasks
       floatingActionButton: FloatingActionButton(
           onPressed: createNewTask, child: const Icon(Icons.add)),
-          
+
       body: ListView.builder(
         itemCount: toDoTask.length,
         itemBuilder: (context, index) {
