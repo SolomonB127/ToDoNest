@@ -4,9 +4,9 @@ class TodoTile extends StatelessWidget {
   // Tile Variables
   final String taskName;
   final bool isTaskCompleted;
-  void Function(bool?)? onChanged;
+  final void Function(bool?)? onChanged;
 
-  TodoTile(
+  const TodoTile(
       {super.key,
       required this.taskName,
       required this.isTaskCompleted,
