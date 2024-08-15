@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:todo_nest/Pages/home_page.dart';
 
-void main() {
+void main() async {
+  // Init Hive - Hive is used for storing small and medium size dataset
+  await Hive.initFlutter();
+
+  // Open hive box
+  var box = await Hive.openBox('storage');
+
   runApp(const MainApp());
 }
 
@@ -17,8 +24,7 @@ class MainApp extends StatelessWidget {
           primarySwatch: Colors.grey,
           appBarTheme: const AppBarTheme(backgroundColor: Colors.grey),
           floatingActionButtonTheme: const FloatingActionButtonThemeData(
-            backgroundColor:
-                Colors.grey,
+            backgroundColor: Colors.grey,
           )),
     );
   }
