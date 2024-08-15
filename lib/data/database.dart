@@ -10,8 +10,7 @@ class ToDoDB {
   // run this if app is opened for the first time ever (default values)
   void createInitialData() {
     toDoTask = [
-      ["Make First App", false],
-      ["Eat", false],
+      ["Add things to do", false],
     ];
   }
 
