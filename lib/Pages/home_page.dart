@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_nest/Components/dialog_box.dart';
 import 'package:todo_nest/Components/todo_tile.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,6 +23,15 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  // Create New Task Method
+  void createNewTask() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const DialogBox();
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,8 +42,9 @@ class _HomePageState extends State<HomePage> {
       ),
 
       // Floating Button to add tasks
-      floatingActionButton:
-          FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
+      floatingActionButton: FloatingActionButton(
+          onPressed: createNewTask, child: const Icon(Icons.add)),
+          
       body: ListView.builder(
         itemCount: toDoTask.length,
         itemBuilder: (context, index) {
