@@ -72,6 +72,5 @@ This Flutter application is a simple to-do list app that uses Hive as its local 
 
 ## Demo Video
 
-<video width="600" controls autoplay loop muted>
-  <source src="./lib/assets/video/ToDo_demo.mp4" type="video/mp4">
-</video>
+[Watch the demo video](./lib/assets/video/ToDo_demo.mp4)
+
