@@ -4,6 +4,14 @@
 
 This Flutter application is a simple to-do list app that uses Hive as its local database. It allows users to add, update, and delete tasks. The app is designed with a clean UI using MaterialApp.
 
+### Screenshots
+
+![Home Screen](/lib/assets/screenshots/Homepage.jpg)
+*Home Screen displaying tasks*
+
+![Add Task Dialog](/lib/assets/screenshots/add_task_dialog.jpg)
+*Dialog box for adding a new task*
+
 ## Features
 
 - Local data persistence with Hive
@@ -67,8 +75,16 @@ This Flutter application is a simple to-do list app that uses Hive as its local 
 # Usage
 
 - **Adding a Task**: Press the floating action button to add a new task.
+![Add Task](./lib/assets/screenshots/add_task.jpg)
+  *Screenshot showing the task creation process*
+
 - **Checking a Task**: Tap the checkbox next to a task to mark it as completed.
+![Check Task](./lib/assets/screenshots/check_task.jpg)
+  *Screenshot showing a completed task*
+
 - **Deleting a Task**: Swipe the task tile to reveal a delete option.
+![Delete Task](./lib/assets/screenshots/delete_task.jpg)
+  *Screenshot showing the swipe-to-delete action*
 
 ## Demo Video
 
